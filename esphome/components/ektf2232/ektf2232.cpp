@@ -110,10 +110,7 @@ void EKTF2232Touchscreen::loop() {
         break;
     }
 
-    ESP_LOGV(TAG, "Touch %d: (x=%d, y=%d)", i, tp.x, tp.y);
-    this->touch_trigger_->trigger(tp);
-    for (auto *listener : this->touch_listeners_)
-      listener->touch(tp);
+    this->defer([this, tp]() { this->send_touch_(tp); });
   }
 }
 
@@ -160,6 +157,7 @@ bool EKTF2232Touchscreen::soft_reset_() {
 void EKTF2232Touchscreen::dump_config() {
   ESP_LOGCONFIG(TAG, "EKT2232 Touchscreen:");
   LOG_I2C_DEVICE(this);
+  LOG_TOUCHSCREEN(this);
   LOG_PIN("  Interrupt Pin: ", this->interrupt_pin_);
   LOG_PIN("  RTS Pin: ", this->rts_pin_);
 }
