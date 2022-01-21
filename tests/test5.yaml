@@ -57,6 +57,16 @@ binary_sensor:
     id: io0_button
     icon: mdi:gesture-tap-button
 
+  - platform: touchscreen
+    min_x: 0
+    max_x: 100
+    min_y: 0
+    max_y: 100
+    on_touch:
+      - logger.log:
+          format: "Touch at (%d, %d)"
+          args: ["touch.x", "touch.y"]
+
 tlc5947:
   data_pin: GPIO12
   clock_pin: GPIO14
