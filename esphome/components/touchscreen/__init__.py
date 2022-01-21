@@ -4,6 +4,8 @@ import esphome.codegen as cg
 from esphome import automation
 from esphome.const import CONF_HEIGHT, CONF_ON_TOUCH, CONF_ROTATION, CONF_WIDTH
 
+CODEOWNERS = ["@jesserockz"]
+
 touchscreen_ns = cg.esphome_ns.namespace("touchscreen")
 
 Touchscreen = touchscreen_ns.class_("Touchscreen")
