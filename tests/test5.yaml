@@ -62,7 +62,7 @@ binary_sensor:
     max_x: 100
     min_y: 0
     max_y: 100
-    on_touch:
+    on_press:
       - logger.log:
           format: "Touch at (%d, %d)"
           args: ["touch.x", "touch.y"]
